@@ -1,0 +1,17 @@
+---
+- name: crate a filesystem on AIX  playbook
+  hosts: aix
+  gather_facts: False
+## predefine your collection then use short name for moduels
+  collections:
+    - ibm.power_aix
+
+## list tasks
+  tasks:
+  - filesystem:
+      state: present
+      filesystem: /mntfaad
+      fs_type: jfs2
+      attributes: size=10000,isnapshot='no'
+      mount_group: test
+      vg: rootvg

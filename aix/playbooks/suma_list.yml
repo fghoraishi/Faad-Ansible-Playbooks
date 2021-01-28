@@ -1,0 +1,12 @@
+---
+- name: run suma list  playbook
+  hosts: aix
+  gather_facts: False
+## predefine your collection then use short name for moduels
+  collections:
+    - ibm.power_aix
+  tasks:
+    - name: Check, download and install system updates for the current oslevel of the system
+      suma:
+#        action: download
+        action: list

@@ -1,0 +1,11 @@
+---
+- name: run lpar_facts playbook
+  hosts: aix
+  gather_facts: False
+  tasks:
+    - name: Retrieve the LPAR related information
+      ibm.power_aix.lpp_facts:
+    - name: Check whether a fileset called 'openssh.base.client' is installed
+      debug:
+        msg: Fileset 'openssh.base.client' is installed
+      when: "'openssh.base.client' in ansible_facts.filesets"

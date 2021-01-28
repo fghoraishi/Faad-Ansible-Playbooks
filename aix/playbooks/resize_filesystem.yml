@@ -1,0 +1,15 @@
+---
+- name: Resize a filesystem on AIX  playbook
+  hosts: aix
+  gather_facts: False
+## predefine your collection then use short name for moduels
+  collections:
+    - ibm.power_aix
+
+## list tasks
+  tasks:
+  - name: Increase size of a filesystem
+    filesystem:
+      filesystem: /mntfaad
+      state: present
+      attributes: size=+50M

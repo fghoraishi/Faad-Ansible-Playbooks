@@ -1,0 +1,14 @@
+---
+- name: Remove a filesystem on AIX  playbook
+  hosts: aix
+  gather_facts: False
+## predefine your collection then use short name for moduels
+  collections:
+    - ibm.power_aix
+
+## list tasks
+  tasks:
+  - filesystem:
+      state: absent
+      filesystem: /mntfaad
+      rm_mount_point: true

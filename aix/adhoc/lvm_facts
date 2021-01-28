@@ -1,0 +1,1 @@
+ansible aix -m ibm.power_aix.lvm_facts -a "name=all component=vg"

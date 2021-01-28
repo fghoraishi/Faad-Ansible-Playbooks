@@ -1,0 +1,9 @@
+---
+- name: run lpar_facts playbook
+  hosts: aix
+  tasks:
+    - name: Retrieve the LPAR related information
+      ibm.power_aix.lpar_facts:
+    - name: Print the LPAR related information
+      debug:
+        var: ansible_facts.lpar
