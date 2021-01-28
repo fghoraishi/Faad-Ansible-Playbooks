@@ -1,0 +1,20 @@
+---
+- hosts: testusers
+  remote_user: root
+  gather_facts: false
+
+  tasks:
+# The usres in the users.yml file will be created on the target
+  - include_vars: users.yml
+  - name: Creating users on the targets
+    user: name="{{ item.username}}"
+    with_items: "{{ users }}"
+
+  #The public keys of each user will be copied to the target
+  #please note that this code assumes the public-private key pair is generated. 
+  #All users (created above) have public keys copied at one place in a "keyfiles" directory 
+  #Each public key file must be named: authorized_keys.<username>.pub in the keyfiles directory at same level as the playbook
+
+  - name: Placing SSH Key to Authorized Key
+    authorized_key: user="{{item.username}}" key="{{ lookup('file', './keyfiles/authorized_keys.{{ item.username}}.pub')}}"
+    with_items: "{{ users }}"

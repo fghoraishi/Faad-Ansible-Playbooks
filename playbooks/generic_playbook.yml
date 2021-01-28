@@ -1,0 +1,49 @@
+---
+- name: various var options
+  hosts: all
+  gather_facts: no
+  vars:
+    http_port: 80
+  vars_files:
+    - "vars.yml"
+#    - [ "try-first.yml", "try-second-.yml" ]
+  vars_prompt:
+    - name: "my_password"
+      prompt: "Enter password"
+      default: "secret"
+      private: yes
+      confirm: yes
+#      encrypt: "md5_crypt"
+#      salt: 1234
+#      salt_size: 8
+#  debug:
+#    msg: "{{ my_password }}"
+  pre_tasks:
+#    - <task>
+#    - ...
+  roles:
+#    - common
+#    - { role: common, port: 5000, when: "bar == 'Baz'", tags :[one, two] }
+#    - { role: common, when: month == 'Jan' }
+#    - ...
+  tasks:
+#    - include: tasks.yaml
+#    - include: tasks.yaml foo=bar baz=wibble
+#    - include: tasks.yaml
+#      vars:
+#        foo: aaa 
+#        baz:
+#          - z
+#          - y
+#    - { include: tasks.yaml, foo: zzz, baz: [a,b]}
+#    - include: tasks.yaml
+#      when: day == 'Thursday'
+#    - <task>
+#    - ...
+  post_tasks:
+#    - <task>
+#    - ...
+  handlers:
+#    - include: handlers.yml
+#    - <task>
+#    - ...

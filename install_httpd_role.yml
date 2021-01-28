@@ -1,0 +1,8 @@
+---
+    - hosts: redhat
+      become: yes
+      vars_prompt:
+        - name: httpd_state
+          prompt: Enter your present or absent to install or remove Apache?
+      roles:
+         - role: install_httpd

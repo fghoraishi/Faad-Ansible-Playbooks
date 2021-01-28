@@ -1,0 +1,10 @@
+---
+- name: "This runs a command on target"
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: run command ls -l /
+      command: "ls -l /"
+      register: output
+
+    - debug: var=output.stdout_lines

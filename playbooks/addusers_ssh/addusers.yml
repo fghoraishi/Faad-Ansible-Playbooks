@@ -1,0 +1,13 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+
+  tasks:
+  - include_vars: users.yml
+  - name: Creating users to Jump Server
+    user:
+      name="{{ item.username}}"
+      generate_ssh_key=yes
+    with_items: "{{ users }}"
+

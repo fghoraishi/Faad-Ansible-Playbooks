@@ -1,0 +1,10 @@
+---
+- name: "This runs a shell with pipe on target sorted by size in column 8"
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: "run shell  ls -l / | sort -k5 -n"
+      shell: "ls -l / | sort -k5 -n"
+      register: output
+
+    - debug: var=output.stdout_lines

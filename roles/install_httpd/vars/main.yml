@@ -1,0 +1,8 @@
+---
+# vars file for install_httpd
+    max_clients: 5
+    httpd_server_root: '/etc/httpd'
+    httpd_server_tokens: Prod
+    httpd_error_log: logs/error_log
+    httpd_log_level: warn
+    httpd_access_log: logs/access_log

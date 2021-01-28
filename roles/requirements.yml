@@ -1,0 +1,6 @@
+---
+
+#- src: michaellessard.nginx 
+#  version: lastest
+- src: AerisCloud.nginx
+- src: mariuszczyz.centos_apache 

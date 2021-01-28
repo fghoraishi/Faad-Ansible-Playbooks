@@ -1,0 +1,14 @@
+- hosts: all 
+  gather_facts: no
+  tasks: 
+  -  name: does the testfile exist 
+     stat: 
+       path: /tmp/testfile 
+     register: sym 
+  -  debug:
+       msg: "The  /tmp/testfile does not exist" 
+     when: sym.stat.exists == False 
+  -  debug:
+       msg: "The  /tmp/testfile does exist"
+     when: sym.stat.exists == True 
+

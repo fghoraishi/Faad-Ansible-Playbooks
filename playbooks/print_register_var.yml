@@ -1,0 +1,10 @@
+---
+- name: print output of a register variable 
+  hosts: all
+  tasks:
+    - name: Register a variable
+      shell: cat /etc/motd
+      register: contents
+    - debug:
+        var: contents
+

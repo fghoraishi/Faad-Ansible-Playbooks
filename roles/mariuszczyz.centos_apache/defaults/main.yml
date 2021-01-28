@@ -1,0 +1,17 @@
+---
+# defaults file for mariuszczyz.centos-apache
+
+# initial number of threads to spawn on service restart
+START_SERVERS: 4
+
+# number of threads to keep warm
+MIN_SPARE_SERVERS: 20
+
+# max number of threads to keep warm following a traffic spike
+MAX_SPARE_SERVERS: 40
+
+# maximum number of connections
+MAX_CLIENTS: 200
+
+# max number of request to handle per thread before killing it
+MAX_REQUEST_PER_CHILD: 4500

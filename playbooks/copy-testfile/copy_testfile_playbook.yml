@@ -1,0 +1,8 @@
+---
+- name: Copy test file to target
+  hosts: all 
+  tasks: 
+  - name: start copy
+    copy:
+      src: /root/myplaybooks/teach/playbooks/copy-testfile/testfile 
+      dest: /tmp/testfile 

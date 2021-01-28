@@ -1,0 +1,11 @@
+---
+- name: creat file
+  hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: create file
+    file: 
+       path: /tmp/test3
+       state: touch
+    changed_when: true

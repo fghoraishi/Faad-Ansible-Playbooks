@@ -1,0 +1,21 @@
+---
+- name: Deploy Ansible User
+  hosts: all
+  tasks:
+
+    - name: Create Devops User
+      user:
+        name: faad
+        groups: root
+        append: true
+        create_home: true
+        comment: "Ansible Management Account"
+        expires: -1
+        password: "{{ 'Password1' | password_hash('sha512','A512') }}"
+
+    - name: Deploy Local User SSH Key
+      authorized_key:
+        user: faad
+        state: present
+        manage_dir: true
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"

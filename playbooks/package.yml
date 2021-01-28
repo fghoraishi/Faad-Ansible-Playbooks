@@ -1,0 +1,12 @@
+---
+- name: "Install UNZIP package on  target using the package module"
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: "install unzip on aix, redhat and ubuntu"
+      package:
+        name: unzip
+        state: absent 
+
+    - debug: 
+        msg: "Installed UNZIP on  {{ ansible_host }} "

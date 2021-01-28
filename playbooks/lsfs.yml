@@ -1,0 +1,11 @@
+- name: “My Playbook”
+  hosts: nimserver
+  gather_facts: no
+
+  tasks:
+    - name: “List the NIM clients lsfs command" 
+      command: "/usr/sbin/lsfs"
+      register: output
+
+    - debug: var=output.stdout_lines
+

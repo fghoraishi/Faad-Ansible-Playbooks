@@ -1,0 +1,22 @@
+---
+- name: "This will add a line into /etc/hosts file"
+  hosts: localhost 
+  gather_facts: no
+  tasks:
+
+    - name: Replace a localhost entry with our own
+      lineinfile:
+         path: /etc/hosts
+         regexp: '^127\.0\.0\.1'
+         line: 127.0.0.1 localhost faad
+         owner: root
+         group: root
+         mode: '0644'
+
+## this section is to add a line in httpd.conf file
+#    - name: Ensure the default Apache port is 8080
+#      lineinfile:
+#         path: /etc/httpd/conf/httpd.conf
+#         regexp: '^Listen '
+#         insertafter: '^#Listen '
+#         line: Listen 8080

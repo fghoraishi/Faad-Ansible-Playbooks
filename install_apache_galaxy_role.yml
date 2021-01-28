@@ -1,0 +1,7 @@
+---
+- name: install apache from role from galaxy
+  hosts: redhat
+  become: True
+
+  roles:
+    - { role: mariuszczyz.centos_apache, tags: ['centos_apache'] }

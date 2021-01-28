@@ -1,0 +1,9 @@
+KeepAlive Off
+
+<IfModule prefork.c>
+    StartServers        {{ START_SERVERS }}
+    MinSpareServers     {{ MIN_SPARE_SERVERS }}
+    MaxSpareServers     {{ MAX_SPARE_SERVERS }}
+    MaxClients          {{ MAX_CLIENTS }}
+    MaxRequestsPerChild {{ MAX_REQUEST_PER_CHILD }}
+</IfModule>

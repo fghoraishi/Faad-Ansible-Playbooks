@@ -1,0 +1,19 @@
+---
+  - name: looping to create multiple users and prompt user for State
+    hosts: all
+    gather_facts: False
+    vars_prompt:
+    - name: statename
+      prompt: What do you wish to do (present or absent)??
+      private: no
+      default: present
+    tasks:
+    - name: Add several users
+      user:
+        name: "{{ item }}"
+        state: "{{ statename }}" 
+      loop:
+        - user1
+        - user2
+        - user3
+

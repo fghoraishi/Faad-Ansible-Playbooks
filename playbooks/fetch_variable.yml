@@ -1,0 +1,22 @@
+---
+- name: "This runs a fetch to bring back logfile for Ubuntu"
+  gather_facts: yes
+  hosts: all
+  tasks:
+    - name: "Run fetch to get /var/log/syslog and put it in /tmp/clientlogs"
+      fetch: 
+        src: /var/log/syslog
+        dest: /tmp/clientlogs
+        validate_checksum: No
+      when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: "This runs a fetch to bring back logfile for REDHAT"
+  gather_facts: no
+  hosts: redhat-vsi
+  tasks:
+    - name: "run fetch to get /var/log/messages and put it in /tmp/clientlogs"
+      fetch: 
+        src: /var/log/messages
+        dest: /tmp/clientlogs
+        validate_checksum: No
+      when: ansible_facts['distribution'] == "RedHat"

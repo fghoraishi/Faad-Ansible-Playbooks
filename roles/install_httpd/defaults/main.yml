@@ -1,0 +1,6 @@
+---
+# defaults file for install_httpd
+#
+    http_port: 80
+    doc_dir: /ansible/
+    doc_root: /var/man/html/ansible

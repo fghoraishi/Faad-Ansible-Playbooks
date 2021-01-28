@@ -1,0 +1,26 @@
+---
+  - name: run expect to login to ssh client
+    hosts: localhost
+    gather_facts: false
+    tasks:
+      - name: Run expect to wait for a successful and show pwd
+        vars: 
+          host: "ubuntu-vsi"
+          pswd: "Password1"
+          username: "faad"
+        shell: |
+          set timeout 20
+          spawn ssh {{ username }}@{{ host }}
+
+          expect "faad@ubuntu-vsi's password: "
+          send "{{ pswd }}\n"
+
+          expect timeout
+          expect "$ "
+          send "/usr/bin/touch faad\n"
+          exit 0
+        args:
+          executable: /usr/bin/expect
+        delegate_to: localhost
+        register: var
+      - debug: msg="{{ var }}"

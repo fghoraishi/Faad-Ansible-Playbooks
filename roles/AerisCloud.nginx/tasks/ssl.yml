@@ -1,0 +1,37 @@
+- name: "Generate dhparam"
+  shell: |
+    executable=/bin/bash
+    creates=/etc/ssl/certs/dhparam.pem
+
+    openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
+  tags:
+    - nginx
+    - config
+    - files
+
+- name: "Copy the ssl config to the server"
+  template: >
+    src=ssl.conf.j2
+    dest=/etc/nginx/conf.d/ssl.conf
+    mode=0644
+    owner=root
+    group=root
+  tags:
+    - nginx
+    - config
+    - files
+  notify:
+    - Restart nginx with new config
+
+- name: "Create the directory to put the ssl certificate"
+  file: >
+    path=/etc/nginx/ssl
+    mode=0755
+    owner=root
+    group=root
+    state=directory
+  tags:
+    - nginx
+    - config
+    - files
+

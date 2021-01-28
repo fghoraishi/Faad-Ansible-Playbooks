@@ -1,0 +1,60 @@
+---
+- name: install htppd and index file
+  hosts: redhat
+  become: yes
+  vars:
+    http_port: 80
+    doc_dir: /ansible/
+    doc_root: /var/man/html/ansible
+    max_clients: 5
+    httpd_server_root: '/etc/httpd'
+    httpd_server_tokens: Prod
+    httpd_error_log: logs/error_log
+    httpd_log_level: warn
+    httpd_access_log: logs/access_log
+
+  vars_prompt:
+    - name: username
+      prompt: Enter your name?
+
+  tasks:
+  - name: Ensure that Apache is installed
+    yum: 
+      name: httpd 
+      state: present
+    when: ansible_facts['os_family'] == "RedHat"
+
+  - name: start Apache Service
+    service: 
+      name: httpd 
+      enabled: yes 
+      state: started
+
+  - name: Deploy configuration File
+    template: 
+      src: httpd.j2
+      dest: /etc/httpd/conf/httpd.conf
+    notify:
+      - Restart Apache
+  - name: Create a directory if it does not exist
+    file:
+      path: /var/man/html/ansible
+      state: directory
+      mode: '0755'
+  
+  - name: copy site files
+    file: 
+      path: /var/man/html/ansible/index.html
+      state: touch
+    
+
+  - name: copy site files
+    template: 
+      src: index.j2
+      dest: /var/man/html/ansible/index.html
+
+  handlers:
+    - name: Restart Apache
+      service: 
+        name: httpd 
+        state: restarted

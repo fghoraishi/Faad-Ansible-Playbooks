@@ -1,0 +1,19 @@
+---
+## Play 1
+- name: various var options
+  hosts: all 
+  gather_facts: no
+  vars_prompt:
+    - name: "my_password"
+      prompt: "Enter password"
+      default: "secret"
+      private: yes
+      confirm: yes
+      encrypt: "md5_crypt"
+      salt: 1234
+      salt_size: 8
+  tasks:
+    - debug:
+        msg: "password = {{ my_password }}"
+    - debug:
+        msg: "{{ my_password | password_hash('md5_decrypt', '1234') }}}}"

@@ -1,0 +1,7 @@
+---
+- name: "Show facts available on the system"
+  hosts: all
+  tasks:
+    - name: "get facts"
+      debug: 
+        var: ansible_facts

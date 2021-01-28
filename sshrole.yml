@@ -1,0 +1,5 @@
+---
+- hosts: testusers
+  gather_facts: false
+  roles: 
+     - addsshkeys

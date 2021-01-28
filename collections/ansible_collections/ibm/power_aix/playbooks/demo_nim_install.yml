@@ -1,0 +1,18 @@
+---
+- name: "BOS install using mksysb image"
+  hosts: nimserver
+  gather_facts: no
+  vars:
+    vm_targets: quimby01
+    res_group: basic_res_grp
+  collections:
+  - ibm.power_aix
+  tasks:
+
+    - name: Install using group resource
+      nim:
+        action: 'bos_inst'
+        targets: "{{ vm_targets }}"
+        group: "{{ res_group }}"
+      register: result
+    - debug: var=result

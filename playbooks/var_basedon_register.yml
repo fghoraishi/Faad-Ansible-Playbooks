@@ -1,0 +1,15 @@
+---
+- name: perform action based on status of a register variable 
+  hosts: all
+  gather_facts: False
+  tasks:
+    - name: Register a variable
+      shell: cat /etc/motd
+      register: contents
+
+    - name: Use the variable in conditional statement
+      shell: echo "Welcoem was found in the motd file for this target {{ inventory_hostname }}"
+      register: output
+      when: contents.stdout.find('Welcome') != -1
+    - debug:
+        var: output.stdout

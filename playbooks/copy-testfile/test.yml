@@ -1,0 +1,31 @@
+--- 
+- name: check and delete the file
+  hosts: all 
+  tasks: 
+  - name: does the testfile exist 
+    stat: 
+      path: /tmp/testfile 
+    register: sym 
+  - name: check if file does not exist
+    debug:
+      msg: Our /tmp/testfile does exist
+    when: sym.stat.exists == False 
+  - name: check if file exists
+    debug:
+      msg: Our /tmp/testfile does not exist
+    when: sym.stat.exists == True 
+  - name: delete the testfile 
+    file: 
+      path: /tmp/testfile 
+      state: absent 
+  - name: does the testfile exist 
+    stat: 
+      path: /tmp/testfile 
+    register: sym 
+  - debug:
+      msg: Our /tmp/testfile does NOT exist
+    when: sym.stat.exists == False 
+  - debug:
+      msg: Our /tmp/testfile does exist
+    when: sym.stat.exists == True 
+

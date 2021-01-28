@@ -1,0 +1,32 @@
+---
+# tasks file for mariuszczyz.centos-apache
+
+- name: Install the latest Apache 2.4 for CentOS
+  yum:
+    name: httpd
+    state: latest
+
+- name: Install custom Apache configuration file
+  template:
+    src: custom.conf.j2
+    dest: /etc/httpd/conf.d/custom.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart apache
+
+- name: Remove default Apache configuration files
+  file:
+    path: "/etc/httpd/conf.d/{{ item }}"
+    state: absent
+  with_items:
+    - welcome.conf
+    - userdir.conf
+    - README
+  notify: restart apache
+
+- name: Start and enable Apache
+  service:
+    name: httpd
+    state: started
+    enabled: yes

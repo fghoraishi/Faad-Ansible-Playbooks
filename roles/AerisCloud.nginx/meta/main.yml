@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Emilien Kenler <ekenler@wizcorp.jp>
+  description: Sets up nginx
+  company: Wizcorp K.K.
+  license: MIT
+  min_ansible_version: 1.8.1
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+  categories:
+    - web
+dependencies:
+  - role: AerisCloud.repos
+    repositories:
+      centos6:
+        - nginx
+      centos7:
+        - nginx
+  - role: AerisCloud.yum

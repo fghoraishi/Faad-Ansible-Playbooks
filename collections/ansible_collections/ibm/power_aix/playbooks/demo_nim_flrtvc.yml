@@ -1,0 +1,22 @@
+- name: "NIM FLRTVC on AIX playbook"
+  hosts: nimserver
+  gather_facts: no
+  vars:
+    apar: all
+    vm_targets: quimby01
+    path: /export/nim/ansible
+    download: no
+  collections:
+  - ibm.power_aix
+  tasks:
+    - name: "FLRTVC"
+      nim_flrtvc:
+        targets: "{{ vm_targets }}"
+        path: "{{ path }}"
+        verbose: yes
+        apar: "{{ apar }}"
+        force: no
+        clean: False
+        download_only: "{{ download }}"
+      register: result
+    - debug: var=result

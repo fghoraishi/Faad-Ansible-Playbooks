@@ -1,0 +1,8 @@
+---
+- name: "show facts for this system"
+  hosts: all
+  tasks:
+    - name: ren setup
+      setup:
+    - debug:
+        var: ansible_facts

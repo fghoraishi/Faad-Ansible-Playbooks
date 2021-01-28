@@ -1,0 +1,32 @@
+- hosts: all 
+  tasks: 
+  - name: does the test3 exist
+    stat: 
+      path: /tmp/test3
+    register: sym 
+## Check to see if the file exists
+  - debug:
+      msg: "Our /tmp/test3 does not exist" 
+    when: sym.stat.exists == False 
+  - debug:
+      msg: "Our /tmp/test3 does exist"
+    when: sym.stat.exists == True 
+
+## Delete the file
+  - name: delete the test3 
+    file: 
+      path: /tmp/test3
+      state: absent 
+  - name: does the test3 exist 
+    stat: 
+      path: /tmp/test3 
+    register: sym 
+
+## Check to see if the file exists
+  - debug:
+       msg: "Our /tmp/test3 does NOT exist" 
+    when: sym.stat.exists == False 
+  - debug:
+       msg: "Our /tmp/test3 does exist" 
+    when: sym.stat.exists == True 
+

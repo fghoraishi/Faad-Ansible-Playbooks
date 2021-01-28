@@ -1,0 +1,13 @@
+---
+  - name: looping
+    hosts: localhost
+    tasks:
+      - name: looping
+        shell: echo "{{ item }}"
+        loop:
+          - "one"
+          - "two"
+        register: echo
+
+      - debug: msg="{{ echo.results[0].item }}"
+      - debug: msg="{{ echo.results[1].item }}"

@@ -1,0 +1,6 @@
+- name: "Restart nginx with new config"
+  service: >
+    name=nginx
+    state=restarted
+  tags:
+    - nginx

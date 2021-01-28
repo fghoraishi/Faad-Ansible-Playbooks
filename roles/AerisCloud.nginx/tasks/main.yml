@@ -1,0 +1,63 @@
+- name: "Ensure the 'nginx_user' exists"
+  user: >
+    name={{ nginx_user }}
+    state=present
+  tags:
+    - nginx
+    - user
+
+- include: centos.yml
+  when: ansible_distribution == 'CentOS'
+
+- include: ssl.yml
+  when: nginx_use_ssl|bool == True
+
+- name: "Copy the nginx config to the server"
+  template: >
+    src=nginx.conf.j2
+    dest=/etc/nginx/nginx.conf
+    mode=0644
+    owner=root
+    group=root
+  tags:
+    - nginx
+    - config
+    - files
+  notify:
+    - Restart nginx with new config
+
+- name: "Remove default config files"
+  file: >
+    path=/etc/nginx/conf.d/{{ item }}.conf
+    state=absent
+  with_items:
+    - default
+    - example_ssl
+  tags:
+    - nginx
+    - config
+    - files
+  notify:
+    - Restart nginx with new config
+
+- name: "Configure gzip"
+  template: >
+    src=gzip.conf.j2
+    dest=/etc/nginx/conf.d/gzip.conf
+    mode=0644
+    owner=root
+    group=root
+  tags:
+    - nginx
+    - config
+    - files
+  notify:
+    - Restart nginx with new config
+
+- name: "Ensure nginx is running, and starts on boot"
+  service: >
+    name=nginx
+    state=started
+    enabled=yes
+  tags:
+    - nginx

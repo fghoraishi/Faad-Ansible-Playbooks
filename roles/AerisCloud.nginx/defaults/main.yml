@@ -1,0 +1,12 @@
+nginx_user: nginx
+nginx_max_connections: 4096
+
+nginx_worker_process: 2
+nginx_multi_accept: off
+nginx_sendfile: off
+nginx_tcp_nopush: off
+nginx_tcp_nodelay: off
+nginx_keepalive_timeout: 30
+nginx_gzip: off
+
+nginx_use_ssl: false
