@@ -14,4 +14,4 @@
       fs_type: jfs2
       attributes: size=10000,isnapshot='no'
       mount_group: test
-      vg: datavg
+      vg: force
