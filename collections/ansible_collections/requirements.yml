@@ -1,1 +1,3 @@
-ibm.power_aix
+---
+collections:
+ - ibm.power_aix
