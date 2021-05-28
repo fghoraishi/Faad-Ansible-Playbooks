@@ -5,8 +5,8 @@
   tasks:
     - name: "install unzip on aix, redhat and ubuntu"
       package:
-        name: unzip
-        state: absent 
+        name: "{{ appname }}"
+        state: :{{ appstate }}" 
 
     - debug: 
-        msg: "Installed UNZIP on  {{ ansible_host }} "
+        msg: "Installed {{ appname }} on  {{ ansible_host }} "
