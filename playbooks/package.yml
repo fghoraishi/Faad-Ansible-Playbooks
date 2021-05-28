@@ -6,7 +6,7 @@
     - name: "install {{ appname }} on targets"
       package:
         name: "{{ appname }}"
-        state: : "{{ appstate }}" 
+        state: "{{ appstate }}" 
 
     - debug: 
         msg: "Installed {{ appname }} on  {{ ansible_host }} "
