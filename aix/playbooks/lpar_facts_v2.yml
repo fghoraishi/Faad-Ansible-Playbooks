@@ -6,7 +6,7 @@
     - ibm.power_aix
   tasks:
     - name: Retrieve the LPAR related information
-      ibm.power_aix.lpar_facts:
+      lpar_facts:
     - name: Print the LPAR related information
       debug:
         var: ansible_facts.lpar
