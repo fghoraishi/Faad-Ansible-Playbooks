@@ -1,9 +1,9 @@
 ---
-- name: "Install UNZIP package on  target using the package module"
+- name: "Install {{ appname }} package on target using the package module"
   hosts: all
   gather_facts: no
   tasks:
-    - name: "install unzip on aix, redhat and ubuntu"
+    - name: "install {{ appname }} on targets"
       package:
         name: "{{ appname }}"
         state: :{{ appstate }}" 
