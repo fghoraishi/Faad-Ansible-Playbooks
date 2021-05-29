@@ -3,12 +3,13 @@
   hosts: aix
   gather_facts: False
 ## predefine your collection then use short name for moduels
-  collections:
+  collection:
     - ibm.power_aix
 
 ## list tasks
   tasks:
-  - ibm.power_aix.filesystem:
+  - name: "Create a filesystem"
+    ibm.power_aix.filesystem:
       state: present
       filesystem: /mntfaad
       fs_type: jfs2
