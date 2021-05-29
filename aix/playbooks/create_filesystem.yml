@@ -3,8 +3,8 @@
   hosts: aix
   gather_facts: False
 ## predefine your collection then use short name for moduels
-  collection:
-    - ibm.power_aix
+#  collections:
+ #   - ibm.power_aix
 
 ## list tasks
   tasks:
