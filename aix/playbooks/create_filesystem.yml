@@ -10,7 +10,7 @@
   tasks:
   - name: "Create a filesystem"
     ibm.power_aix.filesystem:
-      state: present
+      state: "{{ state }}"
       filesystem: /mntfaad
       fs_type: jfs2
       attributes: size=10000,isnapshot='no'
