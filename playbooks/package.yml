@@ -10,3 +10,7 @@
 
     - debug: 
         msg: "Installed {{ appname }} on  {{ ansible_host }} "
+      when: "[[ appstate }}" == present
+     - debug: 
+        msg: "Uninstalled {{ appname }} on  {{ ansible_host }} "
+      when: "[[ appstate }}" == absent
