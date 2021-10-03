@@ -1,7 +1,7 @@
 ---
 - name: run lpar_facts playbook
   hosts: all
-  gather_facts: true
+  gather_facts: false
   tasks:
     - name: Retrieve the LPAR related information
       ibm.power_aix.lpp_facts:
