@@ -3,8 +3,8 @@
   hosts: all
   gather_facts: no
   tasks:
-    - name: run command ls -l /
-      command: "ls -l /tmp"
+    - name: run command ls -l /usr
+      command: "ls -l /usr"
       register: output
 
     - debug: var=output.stdout_lines
