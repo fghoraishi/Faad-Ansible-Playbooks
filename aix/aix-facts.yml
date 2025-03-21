@@ -1,0 +1,12 @@
+---
+- name: run lpar_facts playbook
+  hosts: aix
+## predefine your collection then use short name for moduels
+  collections:
+    - ibm.power_aix
+  tasks:
+    - name: Retrieve the LPAR related information
+      lpar_facts:
+    - name: Print the LPAR related information
+      debug:
+        var: ansible_facts.lpar
