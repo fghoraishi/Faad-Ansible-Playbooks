@@ -1,6 +1,8 @@
 ---
 - name: run lpar_facts playbook
   hosts: aix
+  collections:
+    - ibm.power_aix
   tasks:
     - name: Retrieve the LPAR related information
       ibm.power_aix.lpar_facts:
