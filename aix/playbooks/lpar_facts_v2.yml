@@ -1,6 +1,6 @@
 ---
 - name: run lpar_facts playbook
-  hosts: all
+  hosts: aix
 ## predefine your collection then use short name for moduels
   collections:
     - ibm.power_aix
